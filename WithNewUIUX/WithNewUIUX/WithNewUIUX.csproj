@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F21A4C93-D056-4AF5-B70E-BB51B057D67F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WithNewUIUX</RootNamespace>
+    <AssemblyName>WithNewUIUX</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="adminbeli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminbeli.Designer.cs">
+      <DependentUpon>adminbeli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="adminjual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminjual.Designer.cs">
+      <DependentUpon>adminjual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="awakku.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="awakku.Designer.cs">
+      <DependentUpon>awakku.cs</DependentUpon>
+    </Compile>
+    <Compile Include="buyforyou.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="buyforyou.Designer.cs">
+      <DependentUpon>buyforyou.cs</DependentUpon>
+    </Compile>
+    <Compile Include="buyforyourstore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="buyforyourstore.Designer.cs">
+      <DependentUpon>buyforyourstore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dodol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dodol.Designer.cs">
+      <DependentUpon>dodol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="katalok.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="katalok.Designer.cs">
+      <DependentUpon>katalok.cs</DependentUpon>
+    </Compile>
+    <Compile Include="koneksi.cs" />
+    <Compile Include="omah.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="omah.Designer.cs">
+      <DependentUpon>omah.cs</DependentUpon>
+    </Compile>
+    <Compile Include="setok.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="setok.Designer.cs">
+      <DependentUpon>setok.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tuku.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tuku.Designer.cs">
+      <DependentUpon>tuku.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GondrongStore.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GondrongStore.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GondrongStore.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GondrongStore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GondrongStore.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GondrongStore.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="GondrongStoreDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GondrongStoreDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="adminbeli.resx">
+      <DependentUpon>adminbeli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adminjual.resx">
+      <DependentUpon>adminjual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="awakku.resx">
+      <DependentUpon>awakku.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="buyforyou.resx">
+      <DependentUpon>buyforyou.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="buyforyourstore.resx">
+      <DependentUpon>buyforyourstore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dodol.resx">
+      <DependentUpon>dodol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="katalok.resx">
+      <DependentUpon>katalok.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="omah.resx">
+      <DependentUpon>omah.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="setok.resx">
+      <DependentUpon>setok.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tuku.resx">
+      <DependentUpon>tuku.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="GondrongStore.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GondrongStore.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="GondrongStore.edmx.diagram">
+      <DependentUpon>GondrongStore.edmx</DependentUpon>
+    </None>
+    <None Include="GondrongStoreDataSet.xsc">
+      <DependentUpon>GondrongStoreDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GondrongStoreDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GondrongStoreDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GondrongStoreDataSet.xss">
+      <DependentUpon>GondrongStoreDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GondrongStore.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GondrongStore.Context.cs</LastGenOutput>
+      <DependentUpon>GondrongStore.edmx</DependentUpon>
+    </Content>
+    <Content Include="GondrongStore.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GondrongStore.edmx</DependentUpon>
+      <LastGenOutput>GondrongStore.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

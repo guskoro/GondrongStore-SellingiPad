@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GondrongStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="katalog">
+          <Key>
+            <PropertyRef Name="id_katalog" />
+          </Key>
+          <Property Name="id_katalog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_katalog" Type="nvarchar(max)" />
+          <Property Name="harga_katalog" Type="int" />
+        </EntityType>
+        <EntityType Name="modal">
+          <Key>
+            <PropertyRef Name="id_modal" />
+          </Key>
+          <Property Name="id_penjualan" Type="int" Nullable="false" />
+          <Property Name="id_katalog" Type="int" Nullable="false" />
+          <Property Name="modal" Type="int" />
+          <Property Name="id_modal" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pembelian">
+          <Key>
+            <PropertyRef Name="id_pembelian" />
+          </Key>
+          <Property Name="id_pembelian" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_stok" Type="int" />
+          <Property Name="jumlah_beli" Type="int" />
+          <Property Name="harga_satuan" Type="int" />
+          <Property Name="tgl_transaksi" Type="date" />
+        </EntityType>
+        <EntityType Name="penjualan">
+          <Key>
+            <PropertyRef Name="id_penjualan" />
+          </Key>
+          <Property Name="id_penjualan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_stok" Type="int" Nullable="false" />
+          <Property Name="jumlah_jual" Type="int" />
+          <Property Name="harga_satuan" Type="int" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="jumlah_retur" Type="int" />
+          <Property Name="laba_rugi" Type="int" />
+          <Property Name="tgl_transaksi" Type="date" />
+        </EntityType>
+        <EntityType Name="stok">
+          <Key>
+            <PropertyRef Name="id_stok" />
+          </Key>
+          <Property Name="id_stok" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_stok" Type="nvarchar(max)" />
+          <Property Name="keterangan_stok" Type="nvarchar(max)" />
+          <Property Name="harga_stok" Type="int" />
+          <Property Name="jumlah_stok" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_user" Type="nvarchar(max)" />
+          <Property Name="alamat_user" Type="nvarchar(max)" />
+          <Property Name="telp_user" Type="int" />
+        </EntityType>
+        <Association Name="FK_modal_katalog">
+          <End Role="katalog" Type="Self.katalog" Multiplicity="1" />
+          <End Role="modal" Type="Self.modal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="katalog">
+              <PropertyRef Name="id_katalog" />
+            </Principal>
+            <Dependent Role="modal">
+              <PropertyRef Name="id_katalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pembelian_pembelian">
+          <End Role="pembelian" Type="Self.pembelian" Multiplicity="1" />
+          <End Role="pembelian1" Type="Self.pembelian" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pembelian">
+              <PropertyRef Name="id_pembelian" />
+            </Principal>
+            <Dependent Role="pembelian1">
+              <PropertyRef Name="id_pembelian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_penjualan_stok">
+          <End Role="stok" Type="Self.stok" Multiplicity="1" />
+          <End Role="penjualan" Type="Self.penjualan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stok">
+              <PropertyRef Name="id_stok" />
+            </Principal>
+            <Dependent Role="penjualan">
+              <PropertyRef Name="id_stok" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_penjualan_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="penjualan" Type="Self.penjualan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="penjualan">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GondrongStoreModelStoreContainer">
+          <EntitySet Name="katalog" EntityType="Self.katalog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="modal" EntityType="Self.modal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pembelian" EntityType="Self.pembelian" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="penjualan" EntityType="Self.penjualan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stok" EntityType="Self.stok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_modal_katalog" Association="Self.FK_modal_katalog">
+            <End Role="katalog" EntitySet="katalog" />
+            <End Role="modal" EntitySet="modal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pembelian_pembelian" Association="Self.FK_pembelian_pembelian">
+            <End Role="pembelian" EntitySet="pembelian" />
+            <End Role="pembelian1" EntitySet="pembelian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_penjualan_stok" Association="Self.FK_penjualan_stok">
+            <End Role="stok" EntitySet="stok" />
+            <End Role="penjualan" EntitySet="penjualan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_penjualan_user" Association="Self.FK_penjualan_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="penjualan" EntitySet="penjualan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GondrongStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="katalog">
+          <Key>
+            <PropertyRef Name="id_katalog" />
+          </Key>
+          <Property Name="id_katalog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_katalog" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="harga_katalog" Type="Int32" />
+          <NavigationProperty Name="modals" Relationship="Self.FK_modal_katalog" FromRole="katalog" ToRole="modal" />
+        </EntityType>
+        <EntityType Name="modal">
+          <Key>
+            <PropertyRef Name="id_modal" />
+          </Key>
+          <Property Name="id_penjualan" Type="Int32" Nullable="false" />
+          <Property Name="id_katalog" Type="Int32" Nullable="false" />
+          <Property Name="modal1" Type="Int32" />
+          <Property Name="id_modal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="katalog" Relationship="Self.FK_modal_katalog" FromRole="modal" ToRole="katalog" />
+        </EntityType>
+        <EntityType Name="pembelian">
+          <Key>
+            <PropertyRef Name="id_pembelian" />
+          </Key>
+          <Property Name="id_pembelian" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_stok" Type="Int32" />
+          <Property Name="jumlah_beli" Type="Int32" />
+          <Property Name="harga_satuan" Type="Int32" />
+          <Property Name="tgl_transaksi" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="pembelian1" Relationship="Self.FK_pembelian_pembelian" FromRole="pembelian" ToRole="pembelian1" />
+          <NavigationProperty Name="pembelian2" Relationship="Self.FK_pembelian_pembelian" FromRole="pembelian1" ToRole="pembelian" />
+        </EntityType>
+        <EntityType Name="penjualan">
+          <Key>
+            <PropertyRef Name="id_penjualan" />
+          </Key>
+          <Property Name="id_penjualan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_stok" Type="Int32" Nullable="false" />
+          <Property Name="jumlah_jual" Type="Int32" />
+          <Property Name="harga_satuan" Type="Int32" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="jumlah_retur" Type="Int32" />
+          <Property Name="laba_rugi" Type="Int32" />
+          <Property Name="tgl_transaksi" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="stok" Relationship="Self.FK_penjualan_stok" FromRole="penjualan" ToRole="stok" />
+          <NavigationProperty Name="user" Relationship="Self.FK_penjualan_user" FromRole="penjualan" ToRole="user" />
+        </EntityType>
+        <EntityType Name="stok">
+          <Key>
+            <PropertyRef Name="id_stok" />
+          </Key>
+          <Property Name="id_stok" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_stok" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="keterangan_stok" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="harga_stok" Type="Int32" />
+          <Property Name="jumlah_stok" Type="Int32" />
+          <NavigationProperty Name="penjualans" Relationship="Self.FK_penjualan_stok" FromRole="stok" ToRole="penjualan" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_user" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="alamat_user" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="telp_user" Type="Int32" />
+          <NavigationProperty Name="penjualans" Relationship="Self.FK_penjualan_user" FromRole="user" ToRole="penjualan" />
+        </EntityType>
+        <Association Name="FK_modal_katalog">
+          <End Role="katalog" Type="Self.katalog" Multiplicity="1" />
+          <End Role="modal" Type="Self.modal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="katalog">
+              <PropertyRef Name="id_katalog" />
+            </Principal>
+            <Dependent Role="modal">
+              <PropertyRef Name="id_katalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pembelian_pembelian">
+          <End Role="pembelian" Type="Self.pembelian" Multiplicity="1" />
+          <End Role="pembelian1" Type="Self.pembelian" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pembelian">
+              <PropertyRef Name="id_pembelian" />
+            </Principal>
+            <Dependent Role="pembelian1">
+              <PropertyRef Name="id_pembelian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_penjualan_stok">
+          <End Role="stok" Type="Self.stok" Multiplicity="1" />
+          <End Role="penjualan" Type="Self.penjualan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stok">
+              <PropertyRef Name="id_stok" />
+            </Principal>
+            <Dependent Role="penjualan">
+              <PropertyRef Name="id_stok" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_penjualan_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="penjualan" Type="Self.penjualan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="penjualan">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GondrongStoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="katalogs" EntityType="Self.katalog" />
+          <EntitySet Name="modals" EntityType="Self.modal" />
+          <EntitySet Name="pembelians" EntityType="Self.pembelian" />
+          <EntitySet Name="penjualans" EntityType="Self.penjualan" />
+          <EntitySet Name="stoks" EntityType="Self.stok" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_modal_katalog" Association="Self.FK_modal_katalog">
+            <End Role="katalog" EntitySet="katalogs" />
+            <End Role="modal" EntitySet="modals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pembelian_pembelian" Association="Self.FK_pembelian_pembelian">
+            <End Role="pembelian" EntitySet="pembelians" />
+            <End Role="pembelian1" EntitySet="pembelians" />
+          </AssociationSet>
+          <AssociationSet Name="FK_penjualan_stok" Association="Self.FK_penjualan_stok">
+            <End Role="stok" EntitySet="stoks" />
+            <End Role="penjualan" EntitySet="penjualans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_penjualan_user" Association="Self.FK_penjualan_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="penjualan" EntitySet="penjualans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GondrongStoreModelStoreContainer" CdmEntityContainer="GondrongStoreEntities">
+          <EntitySetMapping Name="katalogs">
+            <EntityTypeMapping TypeName="GondrongStoreModel.katalog">
+              <MappingFragment StoreEntitySet="katalog">
+                <ScalarProperty Name="id_katalog" ColumnName="id_katalog" />
+                <ScalarProperty Name="nama_katalog" ColumnName="nama_katalog" />
+                <ScalarProperty Name="harga_katalog" ColumnName="harga_katalog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="modals">
+            <EntityTypeMapping TypeName="GondrongStoreModel.modal">
+              <MappingFragment StoreEntitySet="modal">
+                <ScalarProperty Name="id_penjualan" ColumnName="id_penjualan" />
+                <ScalarProperty Name="id_katalog" ColumnName="id_katalog" />
+                <ScalarProperty Name="modal1" ColumnName="modal" />
+                <ScalarProperty Name="id_modal" ColumnName="id_modal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pembelians">
+            <EntityTypeMapping TypeName="GondrongStoreModel.pembelian">
+              <MappingFragment StoreEntitySet="pembelian">
+                <ScalarProperty Name="id_pembelian" ColumnName="id_pembelian" />
+                <ScalarProperty Name="id_stok" ColumnName="id_stok" />
+                <ScalarProperty Name="jumlah_beli" ColumnName="jumlah_beli" />
+                <ScalarProperty Name="harga_satuan" ColumnName="harga_satuan" />
+                <ScalarProperty Name="tgl_transaksi" ColumnName="tgl_transaksi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="penjualans">
+            <EntityTypeMapping TypeName="GondrongStoreModel.penjualan">
+              <MappingFragment StoreEntitySet="penjualan">
+                <ScalarProperty Name="id_penjualan" ColumnName="id_penjualan" />
+                <ScalarProperty Name="id_stok" ColumnName="id_stok" />
+                <ScalarProperty Name="jumlah_jual" ColumnName="jumlah_jual" />
+                <ScalarProperty Name="harga_satuan" ColumnName="harga_satuan" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="jumlah_retur" ColumnName="jumlah_retur" />
+                <ScalarProperty Name="laba_rugi" ColumnName="laba_rugi" />
+                <ScalarProperty Name="tgl_transaksi" ColumnName="tgl_transaksi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stoks">
+            <EntityTypeMapping TypeName="GondrongStoreModel.stok">
+              <MappingFragment StoreEntitySet="stok">
+                <ScalarProperty Name="id_stok" ColumnName="id_stok" />
+                <ScalarProperty Name="nama_stok" ColumnName="nama_stok" />
+                <ScalarProperty Name="keterangan_stok" ColumnName="keterangan_stok" />
+                <ScalarProperty Name="harga_stok" ColumnName="harga_stok" />
+                <ScalarProperty Name="jumlah_stok" ColumnName="jumlah_stok" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GondrongStoreModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="GondrongStoreModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="nama_user" ColumnName="nama_user" />
+                <ScalarProperty Name="alamat_user" ColumnName="alamat_user" />
+                <ScalarProperty Name="telp_user" ColumnName="telp_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
